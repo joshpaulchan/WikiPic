@@ -8,6 +8,8 @@ var multer = require('multer');
 var app = express();
 var upload = multer({ dest: './uploads/'});
 
+app.use(express.static('assets'));
+
 app.use(multer({
 	dest: './uploads/',
 	rename: function(fieldname, filename) {
@@ -23,7 +25,11 @@ app.use(multer({
 
 // Route root
 app.get('/', function(req, res) {
-	res.sendFile(__dirname + '/assets/index.html');
+	res.sendFile(__dirname + '/index.html');
+});
+
+app.get('/gallery', function(req, res) {
+	res.sendFile(__dirname + '/index.html');
 });
 
 // Upload route
@@ -32,7 +38,7 @@ app.post('/api/upload', function(req, res) {
 		if (err) {
 			return res.end("Error uploading the file.");
 		}
-		// res.end("FIled is uploaded");
+		res.end("FIled is uploaded");
 	});
 });
 
