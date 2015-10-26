@@ -8,29 +8,29 @@ var upload = multer({ dest: './uploads/'});
 app.use(multer({
 	dest: './uploads/',
 	rename: function(fieldname, filename) {
-		// TODO
+		return filename + '_' + Date.now();
 	},
 	onFileUploadStart: function(file) {
-		// TODO
+		console.log("Uploading [" + file.name + "]...");
 	},
 	onFileUploadComplete: function(file) {
-		// TODO
-		console.log("Hello");
+		console.log("Completed upload of [" + file.name + "]...");
 	}
 }));
 
 
-// Send root
+// Route root
 app.get('/', function(req, res) {
-	res.sendFile(__dirname + '/index.html');
+	res.sendFile(__dirname + '/assets/index.html');
 });
 
+// Upload route
 app.post('/api/upload', function(req, res) {
-	upload(req, res function(err) {
+	upload(req, res, function(err) {
 		if (err) {
-			return res.end("Error.");
+			return res.end("Error uploading the file.");
 		}
-		res.end("FIled is uploaded");
+		// res.end("FIled is uploaded");
 	});
 });
 
