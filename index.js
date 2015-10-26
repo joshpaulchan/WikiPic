@@ -1,4 +1,7 @@
-// Index.js
+//
+// Uploader
+//
+// Written by Joshua Paul A. Chan
 
 var express = require('express');
 var multer = require('multer');
@@ -17,7 +20,6 @@ app.use(multer({
 		console.log("Completed upload of [" + file.name + "]...");
 	}
 }));
-
 
 // Route root
 app.get('/', function(req, res) {
