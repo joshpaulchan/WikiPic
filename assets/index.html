@@ -28,50 +28,55 @@
 
 	<!-- UPLOADER START -->
 	<div class="container">
-
-		<form id="uploadForm" enctype="multipart/form-data" action="api/upload" method="post" class="form-inline centered" >
-			<div class="form-group form-group-lg">
-				<label class="sr-only" for="wikiImage">Image Uploade:</label>
-				<input class="form-control input-lg" type="file" name="wikiImage" id="wikiImage"/>
+		<div class="jumbotron">
+			<h3>Upload Images</h3>
+			<div class="upload-frame">
+				<div style="display:table-cell; vertical-align:middle;">
+					<form id="uploadForm" enctype="multipart/form-data" action="api/upload" method="post" class="form-inline  centered">
+						<div class="form-group form-group-lg">
+							<label class="sr-only" for="wikiImage">Image Upload:</label>
+							<input class="form-control input-lg" type="file" name="wikiImage" id="wikiImage" multiple/>
+						</div>
+						<div class="form-group form-group-lg">
+							<input class="btn btn-lg btn-default" type="submit" value="Upload" name="submit" />
+						</div>
+					</form>
+				</div>
 			</div>
-			<div class="form-group form-group-lg">
-				<input class="btn btn-lg btn-default" type="submit" value="Upload" name="submit" />
-			</div>
-		</form>
-
+		</div>
 	</div>
 	<!-- UPLOADER END -->
 
 	<!-- GALLERY START -->
-	<div class="container">
+	<!-- <div class="container">
 		<ul>
 			<li>
 				<a href="#" class="thumbnail">
-					<div class="placeholder-img">171x180</div>
+					<div class="placeholder-img" style="width:250px; height: 250px;">250x250</div>
 				</a>
 			</li>
 			<li>
 				<a href="#" class="thumbnail">
-					<div class="placeholder-img">171x180</div>
+					<div class="placeholder-img" style="width:250px; height: 250px;">250x250</div>
 				</a>
 			</li>
 			<li>
 				<a href="#" class="thumbnail">
-					<div class="placeholder-img">171x180</div>
+					<div class="placeholder-img" style="width:250px; height: 250px;">250x250</div>
 				</a>
 			</li>
 			<li>
 				<a href="#" class="thumbnail">
-					<div class="placeholder-img">171x180</div>
+					<div class="placeholder-img" style="width:250px; height: 250px;">250x250</div>
 				</a>
 			</li>
 			<li>
 				<a href="#" class="thumbnail">
-					<div class="placeholder-img">171x180</div>
+					<div class="placeholder-img" style="width:250px; height: 250px;">250x250</div>
 				</a>
 			</li>
 		</div>
-	</div>
+	</div> -->
 	<!-- GALLERY END -->
 </body>
 </html>
