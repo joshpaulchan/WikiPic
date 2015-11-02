@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>PMWiki Image Uploader</title>
+	<!-- CSS -->
+	<!-- [Bootstrap] Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+
+	<!-- [Bootstrap] Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
+
+	<!-- [Dropzone] -->
+	<link rel="stylesheet" type="text/css" href="lib/dropzone/dropzone-basic.css">
+	<link rel="stylesheet" type="text/css" href="lib/dropzone/dropzone.css">
+
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+
+	<!-- JS -->
+	<!-- [Dropzone] -->
+	<script src="lib/dropzone/dropzone.js"></script>
+	<!-- [JQuery] -->
+	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<!-- [Bootstrap] Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+
+</head>
+<body>
+	<!-- HEADER START -->
+	<nav class="navbar navbar-default navbar-static-top">
+		<div class="container">
+			<h3>PMWiki Image Uploader</h3>
+		</div>
+	</nav>
+	<!-- HEADER END -->
+
+	<!-- UPLOADER START -->
+	<div class="container">
+		<!-- <div class="jumbotron"> -->
+			<div class="row">
+				<h3>Upload Images</h3>
+			</div>
+			<!-- File Input -->
+			<div class="row upload-frame">
+				<div class="col-sm-6">
+					<form action="api/upload" class="dropzone" id="uploadFormDD" multiple>
+					</form>
+				</div>
+				<div class="col-sm-6">
+					or
+					<form id="uploadForm" action="api/upload" method="post">
+						<div class="form-group form-group-lg">
+						   <label class="sr-only" for="uploadFormFS">File Select</label>
+						   <input class="form-control input-lg" type="file" name="wikiImage" id="uploadFormFS" multiple/>
+					   </div>
+					</form>
+				</div>
+			</div>
+			<!-- Upload Manager -->
+			<div class="row">
+				<div class="form-group form-group-lg">
+					<input id="upBtn" class="btn btn-lg" type="submit" value="Upload" name="submit" disabled/>
+				</div>
+			</div>
+
+			<!-- <div style="display:table-cell; vertical-align:middle;">
+				<form id="uploadForm" enctype="multipart/form-data" action="api/upload" method="post" class="form-inline  centered">
+					<div
+					</div>
+					<div class="form-group form-group-lg">
+						<input class="btn btn-lg btn-default" type="submit" value="Upload" name="submit" />
+					</div>
+				</form>
+			</div> -->
+		<!-- </div> -->
+	</div>
+	<!-- UPLOADER END -->
+	<script src="js/main.js"></script>
+</body>
+</html>
