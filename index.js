@@ -33,7 +33,7 @@ app.get('/upload/', function(req, res) {
 })
 
 app.get('/gallery', function(req, res) {
-	res.sendFile(__dirname + '/index.html');
+	res.sendFile(__dirname + '/gallery.html');
 });
 
 // API
