@@ -48,7 +48,7 @@ app.post(API_ROOT + '/upload', function(req, res) {
 	});
 });
 
-api.get(API_ROOT + '/images', function(req, res) {
+app.get(API_ROOT + '/images', function(req, res) {
 	// TODO:
 	// Send JSON response with array of images with names, thumbnails and links that need to be copied
 	console.log('Fetching image info..');
