@@ -7,13 +7,13 @@ var express = require('express');
 var multer = require('multer');
 var fs = require('fs-extra');
 var app = express();
-var upload = multer({ dest: './uploads/'});
 
 app.use(express.static(__dirname + '/assets'));
 
 var PMWIKI_DIR = './pw-uploads';
 var DL_DIR = './uploads';
 
+var upload = multer({ dest: DL_DIR});
 app.use(multer({
 	dest: DL_DIR,
 	rename: function(fieldname, filename) {
