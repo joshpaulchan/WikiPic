@@ -4,6 +4,7 @@
   "dependencies": {
     "bootstrap": "^3.3.5",
     "express": "~4.10.2",
+    "fs-extra": "^0.26.2",
     "multer": "~0.1.6"
   },
   "devDependencies": {
