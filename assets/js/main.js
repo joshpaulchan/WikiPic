@@ -58,9 +58,9 @@ var disableUpload = function(el) {
 
 var inputFS = document.getElementById('uploadFormFS');
 
-inputFS.addEventListener('change', function() {
-	console.dir(this);
-	var node = document.getElementById('uploadFormFS-inp')
+inputFS.addEventListener('change', function(e) {
+	// console.dir(this);
+	var node = document.getElementById('uploadFormFS-inp');
 	if (hasFiles(node)) {
 		enableUpload(uploadButton);
 	} else {
@@ -68,19 +68,32 @@ inputFS.addEventListener('change', function() {
 	}
 });
 
-uploadButton.addEventListener('click', function() {
+inputFS.addEventListener('submit', function(e) {
+	e.preventDefault();
+	console.log(e);
+	$.ajax({
+		type: 'POST',
+		url: 'api/upload',
+		data: e.data
+	});
+	return false;
+});
+
+uploadButton.addEventListener('click', function(e) {
+	e.preventDefault();
 	console.log("Sending files to server...");
-	// TODO
-	var inputDD = document.getElementById('uploadFormDD');
-	// Check if either the dnd has or the FS has
-	if (hasFiles(inputDD)) {
-		inputDD.submit();
-	} else if (hasFiles(inputFS)) {
-		inputFS.submit();
+	console.dir(inputFS);
+	var node = document.getElementById('uploadFormFS-inp');
+	if (hasFiles(node)) {
+		// TODO: Submit the photo(s)
+
+		// Fire notification
+		var klaxon = new Klaxon("Upload complete.", 3);
+		klaxon.show();
+
+		inputFS.reset();
 	}
-	inputDD.reset();
 	inputFS.reset();
-	// TODO: Fire notification
 });
 
 var submitFiles = function(el) {
