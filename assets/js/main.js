@@ -13,10 +13,10 @@ Dropzone.options.uploadFormDD = {
 	init: function() {
 		// Add event listeners for file change
 		this.on('addedfile', function(file) {
-			if (hasFiles(this)) { enableUpload(uploadButton); }
+			// if (hasFiles(this)) { enableUpload(uploadButton); }
 		});
 		this.on('removedfile', function(file) {
-			if (!hasFiles(this)) { disableUpload(uploadButton); }
+			// if (!hasFiles(this)) { disableUpload(uploadButton); }
 		});
 		this.on('complete', function(file) {
 			var klaxon = new Klaxon("Upload complete.", 3);
@@ -42,7 +42,7 @@ var enableUpload = function(el) {
 	// Functional change
 	el.disabled = false;
 	// Visual change
-	el.className = "centered btn btn-lg btn-primary";
+	el.className = "btn btn-primary";
 }
 
 var disableUpload = function(el) {
@@ -51,21 +51,21 @@ var disableUpload = function(el) {
 	// Functional change
 	el.disabled = true;
 	// Visual change
-	el.className = "centered btn btn-lg btn-disabled";
+	el.className = "btn btn-disabled";
 }
 
 //// Submission
 
 var inputFS = document.getElementById('uploadFormFS');
 
-inputFS.addEventListener('click', function() {
-	// console.log(this);
-
-	// if hasFiles(this) {
-	// 	enableUpload(uploadButton);
-	// } else {
-	// 	disableUpload(uploadButton);
-	// }
+inputFS.addEventListener('change', function() {
+	console.dir(this);
+	var node = document.getElementById('uploadFormFS-inp')
+	if (hasFiles(node)) {
+		enableUpload(uploadButton);
+	} else {
+		disableUpload(uploadButton);
+	}
 });
 
 uploadButton.addEventListener('click', function() {
