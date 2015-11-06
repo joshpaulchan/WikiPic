@@ -1,11 +1,13 @@
 //// Globals
 
 var uploadButton = document.getElementById('upBtn');
+var UPLOAD_URL = 'api/upload';
 
 //// Dropzone
 
 // Set Dropzone options
 Dropzone.options.uploadFormDD = {
+	url: UPLOAD_URL,
 	paramName: "image",
 	maxFilezie: 2,
 	clickable: false,
@@ -68,35 +70,43 @@ inputFS.addEventListener('change', function(e) {
 	}
 });
 
-inputFS.addEventListener('submit', function(e) {
-	e.preventDefault();
-	console.log(e);
-	$.ajax({
-		type: 'POST',
-		url: 'api/upload',
-		data: e.data
-	});
-	return false;
-});
-
 uploadButton.addEventListener('click', function(e) {
 	e.preventDefault();
 	console.log("Sending files to server...");
-	console.dir(inputFS);
+	// console.dir(inputFS);
 	var node = document.getElementById('uploadFormFS-inp');
 	if (hasFiles(node)) {
-		// TODO: Submit the photo(s)
 
-		// Fire notification
-		var klaxon = new Klaxon("Upload complete.", 3);
-		klaxon.show();
+		// Retrieve data list
+		var files = node.files;
+		var formData = new FormData();
 
-		inputFS.reset();
+		// Get data from list
+		for (var i = 0; i < files.length; i++) {
+			var file = files[i];
+			formData.append('photos[]', file, file.name);
+		}
+
+		console.log(formData);
+		// Send request
+		var xhr = new XMLHttpRequest();
+
+		xhr.open('POST', UPLOAD_URL, true);
+
+		xhr.onload = function() {
+			var msg = 'Upload ';
+			if (xhr.status === 200) {
+				inputFS.reset();
+				msg += 'complete :)!';
+			} else {
+				msg += 'failed :/.';
+			}
+
+			var klaxon = new Klaxon(msg, 3);
+			klaxon.show();
+			return false;
+		}
+		xhr.send(formData);
 	}
-	inputFS.reset();
+	return false;
 });
-
-var submitFiles = function(el) {
-	// Submit the data of the selected input element
-	el.submit();
-}
