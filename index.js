@@ -39,7 +39,7 @@ app.get('/upload/', function(req, res) {
 })
 
 app.get('/gallery', function(req, res) {
-	res.sendFile(__dirname + '/gallery.html');
+	res.sendFile(__dirname + '/assets/gallery.html');
 });
 
 // API
@@ -50,22 +50,27 @@ app.post(API_ROOT + '/upload', function(req, res) {
 		if (err) {
 			return res.end("Error uploading the file.");
 		}
-		res.end("FIled is uploaded");
+		res.end("File is uploaded");
 		// Once file is uploaded, use fs.copy(src, trg, cb) to move to necessary folder
 	});
 });
 
 app.get(API_ROOT + '/images/all', function(req, res) {
-	// Send JSON response with array of images with names, thumbnails and links that need to be copied
+	// Send JSON response with array of images with names and links that need to be copied
 	var paths = [];
 	fs.walk(DL_DIR).on('data', function(item) {
-		paths.push(item.path);
+		var path = item.path;
+		// console.log(path);
+		if (path.slice(path.lastIndexOf('\\') + 1) != 'uploads') {
+			var pathUrl = 'images' + path.slice(path.lastIndexOf('\\'));
+			paths.push(pathUrl);
+		}
 	}).on('end', function() {
 		// console.dir(paths);
 		console.log('Fetching image info..');
 		var items = paths.map(function(path) {
 			return ({
-				filename: path.slice(path.lastIndexOf('\\')),
+				filename: path.slice(path.lastIndexOf('\\') + 1),
 				filepath: path
 			})
 		});
