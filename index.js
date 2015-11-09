@@ -71,8 +71,7 @@ app.get(API_ROOT + '/images', function(req, res) {
 		res.setHeader('Content-Type', 'application/json');
 		res.send(JSON.stringify({images: items}));
 	});
-})
-
+});
 
 // MAIN
 app.listen(3000, function() {
