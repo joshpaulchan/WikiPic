@@ -9,6 +9,8 @@ var fs = require('fs-extra');
 var app = express();
 
 app.use(express.static(__dirname + '/assets'));
+app.use('/images', express.static(__dirname + '/uploads'));
+
 
 var PMWIKI_DIR = './pw-uploads';
 var DL_DIR = './uploads';
@@ -53,7 +55,7 @@ app.post(API_ROOT + '/upload', function(req, res) {
 	});
 });
 
-app.get(API_ROOT + '/images', function(req, res) {
+app.get(API_ROOT + '/images/all', function(req, res) {
 	// Send JSON response with array of images with names, thumbnails and links that need to be copied
 	var paths = [];
 	fs.walk(DL_DIR).on('data', function(item) {
@@ -64,8 +66,7 @@ app.get(API_ROOT + '/images', function(req, res) {
 		var items = paths.map(function(path) {
 			return ({
 				filename: path.slice(path.lastIndexOf('\\')),
-				filepath: path,
-				thumbnail: 'TODO',
+				filepath: path
 			})
 		});
 		res.setHeader('Content-Type', 'application/json');
